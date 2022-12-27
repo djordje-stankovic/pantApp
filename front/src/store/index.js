@@ -4,18 +4,21 @@ import axios from "axios";
 
 export default createStore({
   state: {
-    userLogIn : 'Sanja',
+    userLogIn : '',
     userID : 0,
+    isLogIn : true ,
 
   },
   getters: {
-    getCurrentUser : (state) => state.userLogIn
+    getCurrentUser : (state) => state.userLogIn,
+    isLogInUser : (state) => state.isLogIn
    
   },
   mutations: {
     SET_USER(state,user){
-      state.userLogIn = user.userName
-      state.userID = user.userID
+      console.log(user)
+      state.userLogIn = user.acSubject
+      state.userID = user.acUserId
     }
   },
   actions: {

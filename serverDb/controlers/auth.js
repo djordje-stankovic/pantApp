@@ -28,10 +28,11 @@ router.post("/user",async (req,res) => {
       await sql.connect(dbConectio);      
       const result = await sql.query`select * from tPA_UserArh where acUserId = ${user} `
      let record = result.recordsets[0][0]
-    
+    console.log(record)
      if(record) {
         return res.json({
             token: jsonwebtoken.sign({ user: "admin" }, JWT_SECRET),
+            user :record
           });
        }
        return res.json({ message: "The username and password your provided are invalid" });  

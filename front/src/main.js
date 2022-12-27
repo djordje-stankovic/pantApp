@@ -11,7 +11,10 @@ import mainComponent from './components/mainComponent.vue'
 const routes = [
     { path: '/home', component: mainComponent ,},
      { path: '/auth', component: authCom },
-     { path: '/', component: App, redirect: '/home'},
+     { path: '/', component: App, meta: {
+      requiresAuth: true
+    },
+     redirect: '/home'},
   ]
 
   const router = VueRouter.createRouter({
@@ -21,17 +24,18 @@ const routes = [
     mode : history
   })
 
-  router.beforeEach(async (to) => {
-    // redirect to login page if not logged in and trying to access a restricted page
-    // const publicPages = ['/home'];
-    
-    const auth = false;
+  // router.beforeEach((to, from, next) => {
+  //  console.log(store.getters.isLogInUser)
+  //     if (!store.getters.isLogInUser) {
+  //       //console.log('authCom')
+  //       //next('/auth')
+  //     } else {
+  //       //next('/home') // go to wherever I'm going
+  //     }
+   
+  // })
+  
 
-    if (auth) {
-      
-        return '/auth';
-    }
-});
 
 
 createApp(App).use(store).use(router).mount('#app')

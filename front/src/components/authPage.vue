@@ -51,8 +51,11 @@
         );
         if(data.data){
             console.log(data.data)
-            let token = data.token
+           
+            let token = data.data.token
+            let user = data.data.user
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+            this.$store.commit('SET_USER', user)
             this.$router.push({path: '/home'})
         }
         else{
