@@ -38,7 +38,7 @@
    },
    data() {
      return {
-       widthOfSideBar: 250,
+       widthOfSideBar: 65,
        
      };
    },
